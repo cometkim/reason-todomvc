@@ -5,11 +5,25 @@ module Styles = {
 
   let input =
     style([
+      position(`relative),
+      margin(`zero),
+      padding(`px(16)),
+      paddingLeft(`px(60)),
+      borderStyle(`none),
       width(pct(100.0)),
-      fontSize(rem(1.5)),
-      boxSizing(borderBox),
+      fontSize(`px(24)),
+      lineHeight(`em(1.4)),
+      boxSizing(`borderBox),
       height(rem(3.0)),
-      padding2(~v=zero, ~h=rem(1.0)),
+      background(`rgba((0, 0, 0, 0.003))),
+      boxShadow(
+        Shadow.box(
+          ~y=`px(-2),
+          ~blur=`px(1),
+          ~inset=true,
+          `rgba((0, 0, 0, 0.03)),
+        ),
+      ),
       placeholder([color(hex("#bcbcbc")), fontStyle(italic)]),
     ]);
 };

@@ -1,9 +1,49 @@
+module AppState = Model_AppState;
+
+module Styles = {
+  open Css;
+
+  let container =
+    style([
+      position(`relative),
+      background(`hex("fff")),
+      marginTop(`px(130)),
+      marginBottom(`px(40)),
+      // boxShadow(
+      //   Shadow.box(~y=`px(2), ~blur=`px(4), `rgba(0, 0, 0, 0.2))
+      // ),
+      unsafe(
+        "box-shadow",
+        "0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 25px 50px 0 rgba(0, 0, 0, 0.1)",
+      ),
+    ]);
+};
+
+let id_gen = ref(0);
+
 [@react.component]
 let make = () => {
-  let route = Router.useRouter();
+  let (state, dispatch) = React.useReducer(AppState.reducer, {todos: [||]});
+  let todos = state.todos;
+  let hasTodos = todos->Belt.Array.length > 0;
 
-  switch (route) {
-  | Some(Home) => <Page_Home />
-  | None => <Page_NotFound />
-  };
+  let onSubmit =
+    React.useCallback1(
+      v =>
+        if (v != "") {
+          dispatch(AddTodo({id: id_gen^, text: v, complete: false}));
+          id_gen := id_gen^ + 1;
+        },
+      [|dispatch|],
+    );
+
+  <AppState.Dispatch value=dispatch>
+    <Sidebar />
+    <section className=Styles.container>
+      <header> <Title /> <Form onSubmit /> </header>
+      <main hidden={!hasTodos}> <TodoList todos /> </main>
+      <footer hidden={!hasTodos}> <TodoController todos /> </footer>
+    </section>
+    <Footer />
+  </AppState.Dispatch>;
 };

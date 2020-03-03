@@ -33,32 +33,11 @@ let make = (~todos: array(Model_Todo.t)) => {
   let completedItemCount =
     todos->Belt.Array.keep(todo => todo.complete)->Belt.Array.length;
 
-  <>
-    <ul className=Styles.container>
-      {todos
-       ->Belt.Array.map(todo => {
-           <li className=Styles.itemWrapper> <TodoItem todo /> </li>
-         })
-       ->React.array}
-    </ul>
-    <div className=Styles.toolsWrapper>
-      <div>
-        {React.string(leftItemCount->string_of_int ++ " items left")}
-      </div>
-      <div>
-        <a href="#"> {React.string("All")} </a>
-        <a href="#active"> {React.string("Active")} </a>
-        <a href="#completed"> {React.string("Completed")} </a>
-      </div>
-      <div>
-        {completedItemCount > 0
-           ? <button
-               className=Styles.textRight
-               onClick={_ => dispatch(ClearCompleted)}>
-               {React.string("Clear complated")}
-             </button>
-           : React.null}
-      </div>
-    </div>
-  </>;
+  <ul className=Styles.container>
+    {todos
+     ->Belt.Array.map(todo => {
+         <li className=Styles.itemWrapper> <TodoItem todo /> </li>
+       })
+     ->React.array}
+  </ul>;
 };
