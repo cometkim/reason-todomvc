@@ -50,7 +50,9 @@ let make = (~todos: array(Todo.t)) => {
     <ul className=Styles.container>
       {todos
        ->Belt.Array.map(todo => {
-           <li className=Styles.itemWrapper> <TodoItem todo /> </li>
+           <li key={todo.id->string_of_int} className=Styles.itemWrapper>
+             <TodoItem todo />
+           </li>
          })
        ->React.array}
     </ul>
