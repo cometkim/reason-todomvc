@@ -1,7 +1,9 @@
-type t = {todos: array(Model_Todo.t)};
+module Todo = Model_Todo;
+
+type t = {todos: list(Todo.t)};
 
 type action =
-  | AddTodo(Model_Todo.t)
+  | AddTodo(Todo.t)
   | ToggleTodo(int)
   | ToggleAll(bool)
   | DestroyTodo(int)
@@ -10,27 +12,27 @@ type action =
 
 let reducer = (state, action) => {
   switch (action) {
-  | AddTodo(todo) => {todos: state.todos->Belt.Array.concat([|todo|])}
+  | AddTodo(todo) => {todos: state.todos @ [todo]}
   | ToggleTodo(id) => {
       todos:
         state.todos
-        ->Belt.Array.map(todo => {
+        ->Belt.List.map(todo => {
             todo.id == id ? {...todo, complete: !todo.complete} : todo
           }),
     }
   | DestroyTodo(id) => {
-      todos: state.todos->Belt.Array.keep(todo => todo.id != id),
+      todos: state.todos->Belt.List.keep(todo => todo.id != id),
     }
   | ChangeText(id, text) => {
       todos:
         state.todos
-        ->Belt.Array.map(todo => {todo.id == id ? {...todo, text} : todo}),
+        ->Belt.List.map(todo => {todo.id == id ? {...todo, text} : todo}),
     }
   | ToggleAll(complete) => {
-      todos: state.todos->Belt.Array.map(todo => {...todo, complete}),
+      todos: state.todos->Belt.List.map(todo => {...todo, complete}),
     }
   | ClearCompleted => {
-      todos: state.todos->Belt.Array.keep(todo => !todo.complete),
+      todos: state.todos->Belt.List.keep(todo => !todo.complete),
     }
   };
 };

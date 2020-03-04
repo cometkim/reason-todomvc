@@ -1,4 +1,5 @@
 module AppState = Model_AppState;
+module Todo = Model_Todo;
 
 module Styles = {
   open Css;
@@ -79,11 +80,11 @@ module Styles = {
 module TodoLeftCounter = {
   [@react.component]
   let make =
-    React.memo((~todos: array(Model_Todo.t)) => {
+    React.memo((~todos: list(Todo.t)) => {
       <div>
         {todos
-         ->Belt.Array.keep(todo => !todo.complete)
-         ->Belt.Array.length
+         ->Belt.List.keep(todo => !todo.complete)
+         ->Belt.List.length
          ->string_of_int
          ->(n => n ++ " items left")
          ->React.string}
@@ -115,31 +116,30 @@ module TodoFilters = {
     });
 };
 
-module CleanCompletedTodos = {
+module ClearButton = {
   [@react.component]
   let make =
-    React.memo((~todos: array(Model_Todo.t)) => {
+    React.memo((~hidden) => {
       let dispatch = AppState.Dispatch.use();
-      let hasCompleted =
-        todos->Belt.Array.keep(todo => todo.complete)->Belt.Array.length > 0;
-      <div>
-        {hasCompleted
-           ? <button
-               className=Styles.clearComplete
-               onClick={_ => dispatch(ClearCompleted)}>
-               {React.string("Clear completed")}
-             </button>
-           : React.null}
+      <div hidden>
+        <button
+          className=Styles.clearComplete
+          onClick={_ => dispatch(ClearCompleted)}>
+          {React.string("Clear completed")}
+        </button>
       </div>;
     });
 };
 
 [@react.component]
 let make =
-  React.memo((~todos: array(Model_Todo.t)) => {
+  React.memo((~todos: list(Todo.t)) => {
+    let hasCompleted =
+      todos->Belt.List.keep(todo => todo.complete)->Belt.List.length > 0;
+
     <div className=Styles.container>
       <TodoLeftCounter todos />
       <TodoFilters />
-      <CleanCompletedTodos todos />
-    </div>
+      <ClearButton hidden={!hasCompleted} />
+    </div>;
   });

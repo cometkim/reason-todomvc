@@ -65,17 +65,18 @@ module ToggleAll = {
 };
 
 [@react.component]
-let make = (~todos: array(Todo.t)) => {
-  let checked = todos->Belt.Array.every(todo => todo.complete);
+let make = (~todos: list(Todo.t)) => {
+  let checked = todos->Belt.List.every(todo => todo.complete);
   <>
-    <ToggleAll checked/>
+    <ToggleAll checked />
     <ul className=Styles.container>
       {todos
-       ->Belt.Array.map(todo => {
+       ->Belt.List.map(todo => {
            <li key={todo.id->string_of_int} className=Styles.itemWrapper>
              <TodoItem todo />
            </li>
          })
+       ->Belt.List.toArray
        ->React.array}
     </ul>
   </>;

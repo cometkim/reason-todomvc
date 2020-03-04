@@ -30,9 +30,9 @@ let id_gen = ref(0);
 
 [@react.component]
 let make = () => {
-  let (state, dispatch) = React.useReducer(AppState.reducer, {todos: [||]});
+  let (state, dispatch) = React.useReducer(AppState.reducer, {todos: []});
   let todos = state.todos;
-  let hasTodos = todos->Belt.Array.length > 0;
+  let hasTodos = todos->Belt.List.length > 0;
 
   let onSubmit =
     React.useCallback1(
@@ -44,15 +44,17 @@ let make = () => {
       [|dispatch|],
     );
 
-  <AppState.Dispatch value=dispatch>
+  <>
     <Sidebar />
     <section className=Styles.container>
       <header> <Title /> <Form onSubmit /> </header>
-      <main className=Styles.main hidden={!hasTodos}>
-        <TodoList todos />
-      </main>
-      <footer hidden={!hasTodos}> <TodoController todos /> </footer>
+      <AppState.Dispatch value=dispatch>
+        <main className=Styles.main hidden={!hasTodos}>
+          <TodoList todos />
+        </main>
+        <footer hidden={!hasTodos}> <TodoController todos /> </footer>
+      </AppState.Dispatch>
     </section>
     <Footer />
-  </AppState.Dispatch>;
+  </>;
 };
