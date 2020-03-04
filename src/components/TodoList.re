@@ -39,14 +39,36 @@ module Styles = {
           ]),
         ],
       ),
+      selector("&:checked + label", [before([color(`hex("737373"))])]),
     ]);
+};
+
+module ToggleAll = {
+  [@react.component]
+  let make =
+    React.memo((~checked) => {
+      let dispatch = AppState.Dispatch.use();
+      <>
+        <input
+          id="toggle-all"
+          className=Styles.toggleAll
+          type_="checkbox"
+          checked
+          onChange={event => {
+            event->ReactEvent.Form.target##checked
+            ->(checked => dispatch(ToggleAll(checked)))
+          }}
+        />
+        <label htmlFor="toggle-all" />
+      </>;
+    });
 };
 
 [@react.component]
 let make = (~todos: array(Todo.t)) => {
+  let checked = todos->Belt.Array.every(todo => todo.complete);
   <>
-    <input id="toggle-all" className=Styles.toggleAll type_="checkbox" />
-    <label htmlFor="toggle-all" />
+    <ToggleAll checked/>
     <ul className=Styles.container>
       {todos
        ->Belt.Array.map(todo => {

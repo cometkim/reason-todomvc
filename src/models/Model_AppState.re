@@ -3,6 +3,7 @@ type t = {todos: array(Model_Todo.t)};
 type action =
   | AddTodo(Model_Todo.t)
   | ToggleTodo(int)
+  | ToggleAll(bool)
   | DestroyTodo(int)
   | ChangeText(int, string)
   | ClearCompleted;
@@ -24,6 +25,9 @@ let reducer = (state, action) => {
       todos:
         state.todos
         ->Belt.Array.map(todo => {todo.id == id ? {...todo, text} : todo}),
+    }
+  | ToggleAll(complete) => {
+      todos: state.todos->Belt.Array.map(todo => {...todo, complete}),
     }
   | ClearCompleted => {
       todos: state.todos->Belt.Array.keep(todo => !todo.complete),
