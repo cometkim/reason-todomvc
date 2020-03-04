@@ -1,4 +1,5 @@
 module AppState = Model_AppState;
+module Todo = Model_Todo;
 
 module Styles = {
   open Css;
@@ -8,36 +9,50 @@ module Styles = {
 
   let itemWrapper =
     style([
+      position(`relative),
+      fontSize(`px(24)),
       display(`flex),
       alignItems(center),
-      border(px(1), `solid, hex("dddddd")),
-      borderTopStyle(none),
     ]);
 
-  let toolsWrapper =
+  let toggleAll =
     style([
-      display(`grid),
-      gridTemplateColumns([fr(1.0), fr(1.0), fr(1.0)]),
+      position(`absolute),
+      textAlign(`center),
+      borderStyle(`none),
+      opacity(0.0),
+      selector(
+        "& + label",
+        [
+          position(`absolute),
+          top(`px(-52)),
+          left(`px(-13)),
+          width(`px(60)),
+          height(`px(34)),
+          fontSize(`zero),
+          transform(`rotate(`deg(90.0))),
+          before([
+            contentRule({js|❯|js}),
+            fontSize(`px(22)),
+            color(`hex("e6e6e6")),
+            padding2(~v=`px(10), ~h=`px(27)),
+          ]),
+        ],
+      ),
     ]);
-
-  let textRight = style([textAlign(`right)]);
 };
 
 [@react.component]
-let make = (~todos: array(Model_Todo.t)) => {
-  let dispatch = AppState.Dispatch.use();
-
-  let leftItemCount =
-    todos->Belt.Array.keep(todo => !todo.complete)->Belt.Array.length;
-
-  let completedItemCount =
-    todos->Belt.Array.keep(todo => todo.complete)->Belt.Array.length;
-
-  <ul className=Styles.container>
-    {todos
-     ->Belt.Array.map(todo => {
-         <li className=Styles.itemWrapper> <TodoItem todo /> </li>
-       })
-     ->React.array}
-  </ul>;
+let make = (~todos: array(Todo.t)) => {
+  <>
+    <input id="toggle-all" className=Styles.toggleAll type_="checkbox" />
+    <label htmlFor="toggle-all" />
+    <ul className=Styles.container>
+      {todos
+       ->Belt.Array.map(todo => {
+           <li className=Styles.itemWrapper> <TodoItem todo /> </li>
+         })
+       ->React.array}
+    </ul>
+  </>;
 };

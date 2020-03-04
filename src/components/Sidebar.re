@@ -95,6 +95,10 @@ module SpeechBubble = {
             left(`px(3)),
             fontSize(`px(50)),
             opacity(0.15),
+            // Fix manually
+            height(`px(65)),
+            display(`flex),
+            alignItems(`center),
           ]),
           after([
             contentRule({js|”|js}),
@@ -103,6 +107,10 @@ module SpeechBubble = {
             right(`px(3)),
             fontSize(`px(50)),
             opacity(0.15),
+            // Fix manually
+            height(`px(65)),
+            display(`flex),
+            alignItems(`center),
           ]),
         ])}>
         {React.string(

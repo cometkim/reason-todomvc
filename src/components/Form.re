@@ -7,14 +7,19 @@ module Styles = {
     style([
       position(`relative),
       margin(`zero),
-      padding(`px(16)),
-      paddingLeft(`px(60)),
+      padding4(
+        ~top=`px(16),
+        ~right=`px(16),
+        ~bottom=`px(16),
+        ~left=`px(60),
+      ),
       borderStyle(`none),
       width(pct(100.0)),
       fontSize(`px(24)),
+      fontFamily("inherit"),
+      fontWeight(`inherit_),
       lineHeight(`em(1.4)),
       boxSizing(`borderBox),
-      height(rem(3.0)),
       background(`rgba((0, 0, 0, 0.003))),
       boxShadow(
         Shadow.box(
@@ -24,7 +29,11 @@ module Styles = {
           `rgba((0, 0, 0, 0.03)),
         ),
       ),
-      placeholder([color(hex("#bcbcbc")), fontStyle(italic)]),
+      placeholder([
+        color(hex("e6e6e6")),
+        fontStyle(`italic),
+        fontWeight(`num(300)),
+      ]),
     ]);
 };
 

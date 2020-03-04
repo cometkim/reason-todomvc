@@ -17,6 +17,13 @@ module Styles = {
         "0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 25px 50px 0 rgba(0, 0, 0, 0.1)",
       ),
     ]);
+
+  let main =
+    style([
+      position(`relative),
+      borderTop(`px(1), `solid, `hex("e6e6e6")),
+      zIndex(2),
+    ]);
 };
 
 let id_gen = ref(0);
@@ -41,7 +48,9 @@ let make = () => {
     <Sidebar />
     <section className=Styles.container>
       <header> <Title /> <Form onSubmit /> </header>
-      <main hidden={!hasTodos}> <TodoList todos /> </main>
+      <main className=Styles.main hidden={!hasTodos}>
+        <TodoList todos />
+      </main>
       <footer hidden={!hasTodos}> <TodoController todos /> </footer>
     </section>
     <Footer />

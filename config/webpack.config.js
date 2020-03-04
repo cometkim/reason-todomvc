@@ -149,7 +149,19 @@ module.exports = {
           },
         ],
       },
-    ]
+      {
+        test: /\.(png|jpg|gif|svg)$/,
+        use: [
+          {
+            loader: require.resolve('url-loader'),
+            options: {
+              limit: 8192,
+              fallback: require.resolve('file-loader'),
+            },
+          },
+        ],
+      },
+    ],
   },
   plugins: [
     // Generates an `index.html` file with the <script> injected.

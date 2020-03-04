@@ -1,5 +1,5 @@
 Css.(
-  global("html, body", [margin(`zero)]),
+  global("html, body", [margin(`zero), padding(`zero)]),
   global(
     "body",
     [
@@ -14,6 +14,20 @@ Css.(
       fontWeight(`num(300)),
       unsafe("-webkit-font-smoothing", "antialiased"),
       media("(min-width: 899px)", [width(`auto), paddingLeft(`px(300))]),
+    ],
+  ),
+  global(
+    "button",
+    [
+      margin(`zero),
+      padding(`zero),
+      borderStyle(`none),
+      background(`none),
+      verticalAlign(`baseline),
+      fontFamily("inherit"),
+      fontWeight(`inherit_),
+      unsafe("appearance", "none"),
+      unsafe("font-smoothing", "antialiased"),
     ],
   ),
 );
