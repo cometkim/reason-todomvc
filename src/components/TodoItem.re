@@ -39,7 +39,7 @@ module Styles = {
         ),
       ),
       boxSizing(`borderBox),
-      unsafe("-webkit-font-smoothing", "antialiased"),
+      unsafe("fontSmoothing", "antialiased"),
     ]);
 
   let toggle =
@@ -59,7 +59,7 @@ module Styles = {
         [
           backgroundImage(`url(uncheckedSrc)),
           backgroundRepeat(`noRepeat),
-          unsafe("background-position", "center left"),
+          unsafe("backgroundPosition", "center left"),
         ],
       ),
       selector(

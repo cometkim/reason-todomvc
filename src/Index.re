@@ -12,7 +12,7 @@ Css.(
       maxWidth(px(550)),
       margin2(~v=`zero, ~h=`auto),
       fontWeight(`num(300)),
-      unsafe("-webkit-font-smoothing", "antialiased"),
+      unsafe("fontSmoothing", "antialiased"),
       media("(min-width: 899px)", [width(`auto), paddingLeft(`px(300))]),
     ],
   ),
@@ -27,7 +27,7 @@ Css.(
       fontFamily("inherit"),
       fontWeight(`inherit_),
       unsafe("appearance", "none"),
-      unsafe("font-smoothing", "antialiased"),
+      unsafe("fontSmoothing", "antialiased"),
     ],
   ),
 );

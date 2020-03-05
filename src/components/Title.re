@@ -10,7 +10,7 @@ module Styles = {
       fontWeight(`num(100)),
       textAlign(`center),
       color(rgba(175, 47, 47, 0.15)),
-      unsafe("text-rendering", "optimizeLegibility"),
+      unsafe("textRendering", "optimizeLegibility"),
     ]);
 };
 
