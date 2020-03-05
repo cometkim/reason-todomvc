@@ -32,11 +32,12 @@ Css.(
   ),
 );
 
-[@bs.val] external getElementById: string => Dom.element = "document.getElementById";
+[@bs.val]
+external getElementById: string => Dom.element = "document.getElementById";
 
 let rootEl = getElementById("root");
 if (rootEl->ReactDOMRe.domElementToObj##hasChildNodes()) {
-  ReactDOMRe.hydrate(<App/>, rootEl);
+  ReactDOMRe.hydrate(<App />, rootEl);
 } else {
-  ReactDOMRe.render(<App/>, rootEl);
-}
+  ReactDOMRe.render(<App />, rootEl);
+};
