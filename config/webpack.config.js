@@ -1,10 +1,14 @@
 const fs = require('fs')
 const path = require('path')
+const url = require('url');
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const TerserPlugin = require('terser-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
+
+const { homepage } = require(`${process.cwd()}/package.json`);
+const publicUrl = process.env.PUBLIC_URL || homepage;
 
 const appDirectory = fs.realpathSync(process.cwd())
 const paths = {
@@ -45,7 +49,7 @@ module.exports = {
     path: isEnvProduction ? paths.appBuild : undefined,
     // Add /* filename */ comments to generated require()s in the output.
     pathinfo: isEnvDevelopment,
-    publicPath: process.env.PATH_PREFIX || '/',
+    publicPath: publicUrl ? url.parse(publicUrl).pathname : '/',
   },
   optimization: {
     minimize: isEnvProduction,
