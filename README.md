@@ -1,6 +1,8 @@
 # ReasonML TodoMVC 
 
-[![Actions Status](https://github.com//reason-todo-practice/workflows/CI/badge.svg)](https://github.com//reason-todo-practice/actions)
+[![Actions Status](https://github.com/cometkim/reason-todomvc/workflows/CI/badge.svg)](https://github.com/cometkim/reason-todomvc/actions)
+
+[Demo](https://cometkim.github.io/reason-todomvc/)
 
 ## Contributing
 
@@ -42,28 +44,10 @@ yarn build
 
 This will output the compiled files in `build/`.
 
-### Repository Structure
+## Acknowledgement
 
-The following snippet describes reason-todo-practice's repository structure.
+- This production was bootstrapped by [spin](https://github.com/tmattio/spin), a project scaffolding tool made by [@tmattio](https://github.com/tmattio) 
 
-```text
-.
-├── config/
-|   Configuration files used to build the project, such as the webpack configuration.
-│
-├── public/
-|   Static assets that you want to include when serving your application. 
-│   The content of this folder will get copied to the production build.
-│
-├── src/
-|   Source code of the project application.
-│
-├── tests/
-|   Unit tests of the project.
-│
-├── LICENSE
-│
-├── package.json
-│
-└── README.md
-```
+## LICENSE
+
+MIT
