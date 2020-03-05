@@ -1,0 +1,553 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Home component renders without crashing 1`] = `
+.emotion-5 {
+  position: relative;
+  margin: 0;
+  padding: 16px 16px 16px 60px;
+  border-style: none;
+  width: 100%;
+  font-size: 24px;
+  font-family: inherit;
+  font-weight: inherit;
+  line-height: 1.4em;
+  box-sizing: border-box;
+  background: rgba(0,0,0,0.003);
+  box-shadow: 0 -2px 1px 0 rgba(0,0,0,0.03) inset;
+}
+
+.emotion-5::-webkit-input-placeholder {
+  color: #e6e6e6;
+  font-style: italic;
+  font-weight: 300;
+}
+
+.emotion-5::-moz-placeholder {
+  color: #e6e6e6;
+  font-style: italic;
+  font-weight: 300;
+}
+
+.emotion-5:-ms-input-placeholder {
+  color: #e6e6e6;
+  font-style: italic;
+  font-weight: 300;
+}
+
+.emotion-5::placeholder {
+  color: #e6e6e6;
+  font-style: italic;
+  font-weight: 300;
+}
+
+.emotion-4 {
+  position: absolute;
+  top: -155px;
+  width: 100%;
+  font-size: 100px;
+  font-weight: 100;
+  text-align: center;
+  color: rgba(175,47,47,0.15);
+  text-rendering: optimizeLegibility;
+}
+
+.emotion-13 {
+  margin: 65px auto 0 auto;
+  font-size: 10px;
+  color: #bfbfbf;
+  text-align: center;
+  text-shadow: 0 1px 0 rgba(255,255,255,0.5);
+}
+
+.emotion-13 > p {
+  line-height: 1em;
+}
+
+.emotion-13 a {
+  color: currentColor;
+  font-weight: 400;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+}
+
+.emotion-13 a:hover {
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
+}
+
+.emotion-3 {
+  position: absolute;
+  top: 8px;
+  left: -300px;
+  width: 272px;
+  padding: 10px;
+  border-radius: 5px;
+  background-color: rgba(255,255,255,0.6);
+  -webkit-transition-property: left;
+  transition-property: left;
+  -webkit-transition-duration: 500ms;
+  transition-duration: 500ms;
+}
+
+@media (min-width:899px) {
+  .emotion-3 {
+    left: 8px;
+  }
+}
+
+.emotion-3 h3,
+.emotion-3 h4,
+.emotion-3 h5 {
+  margin: 10px 0;
+  font-weight: 500;
+  line-height: 1.2em;
+  color: #000;
+}
+
+.emotion-3 h3 {
+  font-size: 24px;
+}
+
+.emotion-3 h4 {
+  font-size: 18px;
+}
+
+.emotion-3 h5 {
+  margin-bottom: 0;
+  font-size: 14px;
+}
+
+.emotion-3 hr {
+  margin: 20px 0;
+  border-style: none;
+  border-top: 1px dashed #c5c5c5;
+  border-bottom: 1px dashed #f7f7f7;
+}
+
+.emotion-3 a {
+  font-weight: 400;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  color: #b83f45;
+}
+
+.emotion-3 ul {
+  padding: 0;
+  margin-bottom: 30px;
+  margin-left: 25px;
+}
+
+.emotion-7 {
+  list-style-type: none;
+  margin: 0;
+  padding-left: 0;
+}
+
+.emotion-6 {
+  position: absolute;
+  text-align: center;
+  border-style: none;
+  opacity: 0;
+}
+
+.emotion-6 + label {
+  position: absolute;
+  top: -52px;
+  left: -13px;
+  width: 60px;
+  height: 34px;
+  font-size: 0;
+  -webkit-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  transform: rotate(90deg);
+}
+
+.emotion-6 + label::before {
+  content: "❯";
+  font-size: 22px;
+  color: #e6e6e6;
+  padding: 10px 27px;
+}
+
+.emotion-6:checked + label::before {
+  color: #737373;
+}
+
+.emotion-11 {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  height: 20px;
+  padding: 10px 15px;
+  color: #777;
+}
+
+.emotion-11::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 50px;
+  overflow: hidden;
+  box-shadow: 0 1px 1px rgba(0,0,0,0.2), 0 8px 0 -3px #f6f6f6, 0 9px 1px -3px rgba(0,0,0,0.2), 0 16px 0 -6px #f6f6f6, 0 17px 2px -6px rgba(0,0,0,0.2);
+}
+
+.emotion-11 > * {
+  z-index: 1;
+}
+
+.emotion-11 > :nth-child(1) {
+  text-align: left;
+}
+
+.emotion-11 > :nth-child(2) {
+  text-align: center;
+}
+
+.emotion-11 > :nth-child(3) {
+  text-align: right;
+}
+
+.emotion-9 {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+.emotion-9 > li {
+  display: inline;
+}
+
+.emotion-9 > li > a {
+  margin: 3px 5px;
+  padding: 3px 7px;
+  color: currentColor;
+  -webkit-text-decoration: none;
+  text-decoration: none;
+  border: 1px solid transparent;
+  border-radius: 3px;
+}
+
+.emotion-9 > li > a:hover {
+  border-color: rgba(175,47,47,0.1);
+}
+
+.emotion-9 > li > a.selected {
+  border-color: rgba(175,47,47,0.2);
+}
+
+.emotion-10 {
+  font-size: 14px;
+  color: currentColor;
+  cursor: pointer;
+  line-height: 20px;
+}
+
+.emotion-10:hover {
+  -webkit-text-decoration: underline;
+  text-decoration: underline;
+}
+
+.emotion-12 {
+  position: relative;
+  background: #fff;
+  margin-top: 130px;
+  margin-bottom: 40px;
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,0.2),0 25px 50px 0 rgba(0,0,0,0.1);
+}
+
+.emotion-8 {
+  position: relative;
+  border-top: 1px solid #e6e6e6;
+  z-index: 2;
+}
+
+.emotion-2 {
+  position: relative;
+  padding: 10px;
+  background-color: rgba(0,0,0,0.04);
+  border-radius: 5px;
+  border-style: none;
+  margin: 20px 0 60px 0;
+}
+
+.emotion-2::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  right: 30px;
+  border: 13px solid transparent;
+  border-top-color: rgba(0,0,0,0.04);
+}
+
+.emotion-0 {
+  font-size: 15px;
+  font-weight: 300;
+  font-style: italic;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.emotion-0::before {
+  content: "“";
+  position: absolute;
+  top: -20px;
+  left: 3px;
+  font-size: 50px;
+  opacity: 0.15;
+  height: 65px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.emotion-0::after {
+  content: "”";
+  position: absolute;
+  bottom: -42px;
+  right: 3px;
+  font-size: 50px;
+  opacity: 0.15;
+  height: 65px;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.emotion-1 {
+  position: absolute;
+  bottom: -40px;
+  right: 0;
+}
+
+<div>
+  <aside
+    class="emotion-3"
+  >
+    <header>
+      <h3>
+        ReasonReact
+      </h3>
+      <span>
+        <h5>
+          Example
+        </h5>
+        <a
+          href="https://github.com/cometkim/reason-todomvc"
+        >
+          Source
+        </a>
+      </span>
+    </header>
+    <hr />
+    <blockquote
+      class="emotion-2"
+    >
+      <p
+        class="emotion-0"
+      >
+        
+          ReasonReact is a safer, simpler way to build React components, in Reason.
+        
+      </p>
+      <footer
+        class="emotion-1"
+      >
+        <a>
+          ReasonReact
+        </a>
+      </footer>
+    </blockquote>
+    <hr />
+    <h4>
+      Official Resources
+    </h4>
+    <ul>
+      <li>
+        <a
+          href="https://reasonml.github.io/reason-react/docs/en/what-and-why"
+        >
+          What & Why
+        </a>
+      </li>
+      <li>
+        <a
+          href="https://reasonml.github.io/reason-react/docs/en/simple"
+        >
+          Examples
+        </a>
+      </li>
+    </ul>
+    <h4>
+      Community
+    </h4>
+    <ul>
+      <li>
+        <a
+          href="https://reasonml.chat"
+        >
+          Forum
+        </a>
+      </li>
+      <li>
+        <a
+          href="https://discord.gg/reasonml"
+        >
+          Discord
+        </a>
+      </li>
+      <li>
+        <a
+          href="https://twitter.com/reasonml"
+        >
+          Twitter
+        </a>
+      </li>
+      <li>
+        <a
+          href="https://www.reddit.com/r/reasonml/"
+        >
+          Reddit
+        </a>
+      </li>
+      <li>
+        <a
+          href="http://stackoverflow.com/questions/tagged/reason-react"
+        >
+          Stack Overflow
+        </a>
+      </li>
+    </ul>
+    <footer>
+      <hr />
+      <em>
+        If you have other helpful links to share, or find any of the links above no longer work, please 
+        <a
+          href="https://github.com/cometkim/reason-todomvc"
+        >
+          let us know
+        </a>
+        .
+      </em>
+    </footer>
+  </aside>
+  <section
+    class="emotion-12"
+  >
+    <header>
+      <h1
+        class="emotion-4"
+      >
+        todos
+      </h1>
+      <form>
+        <input
+          autocomplete="off"
+          class="emotion-5"
+          id="todo-input"
+          name="todo-input"
+          placeholder="What needs to be done?"
+        />
+      </form>
+    </header>
+    <main
+      class="emotion-8"
+      hidden=""
+    >
+      <input
+        checked=""
+        class="emotion-6"
+        id="toggle-all"
+        type="checkbox"
+      />
+      <label
+        for="toggle-all"
+      />
+      <ul
+        class="emotion-7"
+      />
+    </main>
+    <footer
+      hidden=""
+    >
+      <div
+        class="emotion-11"
+      >
+        <div>
+          0 items left
+        </div>
+        <ul
+          class="emotion-9"
+        >
+          <li>
+            <a
+              class="selected"
+              href="#"
+            >
+              All
+            </a>
+          </li>
+          <li>
+            <a
+              class=""
+              href="#active"
+            >
+              Active
+            </a>
+          </li>
+          <li>
+            <a
+              class=""
+              href="#completed"
+            >
+              Completed
+            </a>
+          </li>
+        </ul>
+        <div
+          hidden=""
+        >
+          <button
+            class="emotion-10"
+          >
+            Clear completed
+          </button>
+        </div>
+      </div>
+    </footer>
+  </section>
+  <footer
+    class="emotion-13"
+  >
+    <p>
+      Double-click to edit a todo
+    </p>
+    <p>
+      Created by 
+      <a
+        href="https://github.com/cometkim"
+      >
+        cometkim
+      </a>
+    </p>
+    <p>
+      Part of 
+      <a
+        href="http://todomvc.com"
+      >
+        TodoMVC
+      </a>
+    </p>
+  </footer>
+</div>
+`;
