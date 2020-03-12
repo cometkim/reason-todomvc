@@ -4,10 +4,6 @@ module AppState = Model_AppState;
 // FIXME
 let makeId = hoxoid(8, ());
 
-let initialState: option(AppState.t) =
-  [%raw "JSON.parse(localStorage.getItem('todo-state'))"]
-  ->Js.Nullable.toOption;
-
 module Styles = {
   open Css;
 
@@ -36,6 +32,10 @@ module Styles = {
 
 [@react.component]
 let make = () => {
+  let (initialState, _) = React.useState(_ => {
+    [%raw "JSON.parse(localStorage.getItem('todo-state'))"]
+    ->Js.Nullable.toOption;
+  });
   let (state, dispatch) =
     React.useReducer(
       AppState.reducer,
