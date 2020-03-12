@@ -5,7 +5,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const TerserPlugin = require('terser-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin')
-const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin');
+const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 const { homepage } = require(`${process.cwd()}/package.json`);
 const publicUrl = process.env.PUBLIC_URL || homepage;
@@ -50,6 +50,12 @@ module.exports = {
     // Add /* filename */ comments to generated require()s in the output.
     pathinfo: isEnvDevelopment,
     publicPath: publicUrl ? url.parse(publicUrl).pathname : '/',
+  },
+  resolve: {
+    alias: {
+			'react': 'preact/compat',
+			'react-dom': 'preact/compat',
+    },
   },
   optimization: {
     minimize: isEnvProduction,
@@ -118,7 +124,11 @@ module.exports = {
           }
         },
       }),
-    ]
+      new BundleAnalyzerPlugin({
+        analyzerMode: 'static',
+        openAnalyzer: false,
+      }),
+    ],
   },
   module: {
     rules: [
@@ -137,21 +147,6 @@ module.exports = {
             },
           },
           ].filter(Boolean)
-      },
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        use: [
-          // ... other loaders
-          {
-            loader: require.resolve('babel-loader'),
-            options: {
-              // ... other options
-              // DO NOT apply the Babel plugin in production mode!
-              plugins: [isEnvDevelopment && require.resolve('react-refresh/babel')].filter(Boolean),
-            },
-          },
-        ],
       },
       {
         test: /\.(png|jpg|gif|svg)$/,
@@ -201,7 +196,6 @@ module.exports = {
       filename: 'static/css/[name].[contenthash:8].css',
       chunkFilename: 'static/css/[name].[contenthash:8].chunk.css',
     }),
-    isEnvDevelopment && new ReactRefreshWebpackPlugin(),
   ].filter(Boolean),
   devServer: {
     // Enable gzip compression of generated files.
