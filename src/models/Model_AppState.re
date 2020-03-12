@@ -4,6 +4,7 @@ module Todo = Model_Todo;
 type t = {todos: list(Todo.t)};
 
 type action =
+  | INIT(t)
   | AddTodo(Todo.t)
   | ToggleTodo(string)
   | ToggleAll(bool)
@@ -14,6 +15,7 @@ type action =
 let reducer = (state, action) => {
   let newState =
     switch (action) {
+    | INIT(state) => state
     | AddTodo(todo) => {todos: state.todos @ [todo]}
     | ToggleTodo(id) => {
         todos:
@@ -38,12 +40,16 @@ let reducer = (state, action) => {
       }
     };
 
-  newState
-  ->Js.Json.stringifyAny
-  ->Belt.Option.map(json => {
-      Dom.Storage2.localStorage->Dom.Storage2.setItem("todo-state", json)
-    })
-  ->ignore;
+  switch (action) {
+  | INIT(_) => ()
+  | _ =>
+    newState
+    ->Js.Json.stringifyAny
+    ->Belt.Option.map(json => {
+        Dom.Storage2.localStorage->Dom.Storage2.setItem("todo-state", json)
+      })
+    ->ignore
+  };
 
   newState;
 };

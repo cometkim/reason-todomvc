@@ -32,21 +32,20 @@ module Styles = {
 
 [@react.component]
 let make = () => {
-  let (initialState, _) =
-    React.useState(_ => {
-      [%raw "JSON.parse(localStorage.getItem('todo-state'))"]
-      ->Js.Nullable.toOption
-    });
-  let (state, dispatch) =
-    React.useReducer(
-      AppState.reducer,
-      switch (initialState) {
-      | Some(initialState) => initialState
-      | None => {todos: []}
-      },
-    );
+  let (state, dispatch) = React.useReducer(AppState.reducer, {todos: []});
   let todos = state.todos;
   let hasTodos = todos->Belt.List.length > 0;
+
+  React.useLayoutEffect1(
+    _ => {
+      [%raw "JSON.parse(localStorage.getItem('todo-state'))"]
+      ->Js.Nullable.toOption
+      ->Belt.Option.map(state => {dispatch(INIT(state))})
+      ->ignore;
+      None;
+    },
+    [|dispatch|],
+  );
 
   let onSubmit =
     React.useCallback1(
