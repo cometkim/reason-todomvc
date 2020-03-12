@@ -32,10 +32,11 @@ module Styles = {
 
 [@react.component]
 let make = () => {
-  let (initialState, _) = React.useState(_ => {
-    [%raw "JSON.parse(localStorage.getItem('todo-state'))"]
-    ->Js.Nullable.toOption;
-  });
+  let (initialState, _) =
+    React.useState(_ => {
+      [%raw "JSON.parse(localStorage.getItem('todo-state'))"]
+      ->Js.Nullable.toOption
+    });
   let (state, dispatch) =
     React.useReducer(
       AppState.reducer,
