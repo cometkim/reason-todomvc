@@ -29,7 +29,7 @@
     "@pmmmwh/react-refresh-webpack-plugin": "^0.1.3",
     "autoprefixer": "^9.7.4",
     "babel-loader": "^8.0.6",
-    "bs-platform": "^7.1.1",
+    "bs-platform": "^7.2.2",
     "bs-react-testing-library": "^0.6.0",
     "bs-webapi": "^0.15.6",
     "concurrently": "^5.0.2",
