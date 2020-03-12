@@ -1,7 +1,7 @@
 module AppState = Model_AppState;
 
-[@bs.module "hexoid"] external hoxoid: int => unit => string = "default";
-let makeId = hoxoid(8)();
+[@bs.module "hexoid"] external hoxoid: (int, unit) => string = "default";
+let makeId = hoxoid(8, ());
 
 let initialState: option(AppState.t) =
   [%raw "JSON.parse(localStorage.getItem('todo-state'))"]
