@@ -1,5 +1,12 @@
 module AppState = Model_AppState;
 
+[@bs.module "hexoid"] external hoxoid: int => unit => string = "default";
+let makeId = hoxoid(8)();
+
+let initialState: option(AppState.t) =
+  [%raw "JSON.parse(localStorage.getItem('todo-state'))"]
+  ->Js.Nullable.toOption;
+
 module Styles = {
   open Css;
 
@@ -26,11 +33,16 @@ module Styles = {
     ]);
 };
 
-let id_gen = ref(0);
-
 [@react.component]
 let make = () => {
-  let (state, dispatch) = React.useReducer(AppState.reducer, {todos: []});
+  let (state, dispatch) =
+    React.useReducer(
+      AppState.reducer,
+      switch (initialState) {
+      | Some(initialState) => initialState
+      | None => {todos: []}
+      },
+    );
   let todos = state.todos;
   let hasTodos = todos->Belt.List.length > 0;
 
@@ -38,8 +50,10 @@ let make = () => {
     React.useCallback1(
       v =>
         if (v != "") {
-          dispatch(AddTodo({id: id_gen^, text: v, complete: false}));
-          id_gen := id_gen^ + 1;
+          dispatch(
+            // FIXME: What's happening here???
+            AddTodo({id: [%raw "makeId()"], text: v, complete: false}),
+          );
         },
       [|dispatch|],
     );

@@ -72,7 +72,7 @@ let make = (~todos: list(Todo.t)) => {
     <ul className=Styles.container>
       {todos
        ->Belt.List.map(todo => {
-           <li key={todo.id->string_of_int} className=Styles.itemWrapper>
+           <li key={todo.id} className=Styles.itemWrapper>
              <TodoItem todo />
            </li>
          })
