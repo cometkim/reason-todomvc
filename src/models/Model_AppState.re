@@ -1,40 +1,51 @@
 module Todo = Model_Todo;
 
+[@bs.deriving jsConverter]
 type t = {todos: list(Todo.t)};
 
 type action =
   | AddTodo(Todo.t)
-  | ToggleTodo(int)
+  | ToggleTodo(string)
   | ToggleAll(bool)
-  | DestroyTodo(int)
-  | ChangeText(int, string)
+  | DestroyTodo(string)
+  | ChangeText(string, string)
   | ClearCompleted;
 
 let reducer = (state, action) => {
-  switch (action) {
-  | AddTodo(todo) => {todos: state.todos @ [todo]}
-  | ToggleTodo(id) => {
-      todos:
-        state.todos
-        ->Belt.List.map(todo => {
-            todo.id == id ? {...todo, complete: !todo.complete} : todo
-          }),
-    }
-  | DestroyTodo(id) => {
-      todos: state.todos->Belt.List.keep(todo => todo.id != id),
-    }
-  | ChangeText(id, text) => {
-      todos:
-        state.todos
-        ->Belt.List.map(todo => {todo.id == id ? {...todo, text} : todo}),
-    }
-  | ToggleAll(complete) => {
-      todos: state.todos->Belt.List.map(todo => {...todo, complete}),
-    }
-  | ClearCompleted => {
-      todos: state.todos->Belt.List.keep(todo => !todo.complete),
-    }
-  };
+  let newState =
+    switch (action) {
+    | AddTodo(todo) => {todos: state.todos @ [todo]}
+    | ToggleTodo(id) => {
+        todos:
+          state.todos
+          ->Belt.List.map(todo => {
+              todo.id == id ? {...todo, complete: !todo.complete} : todo
+            }),
+      }
+    | DestroyTodo(id) => {
+        todos: state.todos->Belt.List.keep(todo => todo.id != id),
+      }
+    | ChangeText(id, text) => {
+        todos:
+          state.todos
+          ->Belt.List.map(todo => {todo.id == id ? {...todo, text} : todo}),
+      }
+    | ToggleAll(complete) => {
+        todos: state.todos->Belt.List.map(todo => {...todo, complete}),
+      }
+    | ClearCompleted => {
+        todos: state.todos->Belt.List.keep(todo => !todo.complete),
+      }
+    };
+
+  newState
+  ->Js.Json.stringifyAny
+  ->Belt.Option.map(json => {
+      Dom.Storage2.localStorage->Dom.Storage2.setItem("todo-state", json)
+    })
+  ->ignore;
+
+  newState;
 };
 
 module Dispatch = {
