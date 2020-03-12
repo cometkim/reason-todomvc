@@ -1,13 +1,13 @@
 module.exports = {
   verbose: true,
-  "roots": [
-    "<rootDir>/tests"
+  roots: [
+    '<rootDir>/tests',
   ],
-  "testMatch": [
-    "<rootDir>/tests/**/*_test.{js,bs.js}"
+  testMatch: [
+    '<rootDir>/tests/**/*_test.{js,bs.js}',
   ],
-  "transform": {
-    "\\.(png|jpg|gif|svg)$": "<rootDir>/tests/fileTransformer.js",
+  transform: {
+    '\\.(png|jpg|gif|svg)$': '<rootDir>/tests/fileTransformer.js',
   },
   snapshotSerializers: [
     'jest-emotion',
