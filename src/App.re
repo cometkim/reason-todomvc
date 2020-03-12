@@ -2,7 +2,7 @@ module AppState = Model_AppState;
 
 [@bs.module] external hoxoid: (int, unit) => string = "hexoid/dist/index.js";
 // FIXME
-let makeHexoId = hoxoid(8, ());
+let makeId = hoxoid(8, ());
 
 let initialState: option(AppState.t) =
   [%raw "JSON.parse(localStorage.getItem('todo-state'))"]
