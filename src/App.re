@@ -1,8 +1,6 @@
 module AppState = Model_AppState;
 
-[@bs.module] external hoxoid: (int, unit) => string = "hexoid/dist/index.js";
-// FIXME
-let makeId = hoxoid(8, ());
+let id = HexoId.create(8);
 
 module Styles = {
   open Css;
@@ -58,10 +56,7 @@ let make = () => {
     React.useCallback1(
       v =>
         if (v != "") {
-          dispatch(
-            // FIXME: What's happening here???
-            AddTodo({id: [%raw "makeId()"], text: v, complete: false}),
-          );
+          dispatch(AddTodo({id: id->HexoId.make, text: v, complete: false}));
         },
       [|dispatch|],
     );
