@@ -32,21 +32,28 @@ module Styles = {
 
 [@react.component]
 let make = () => {
-  let (state, dispatch) = React.useReducer(AppState.reducer, {todos: []});
-  let todos = state.todos;
-  let hasTodos = todos->Belt.List.length > 0;
-
-  React.useLayoutEffect1(
-    _ => {
+  let (state, dispatch) =
+    React.useReducerWithMapState(AppState.reducer, Js.undefined, _ => {
       [%raw "JSON.parse(localStorage.getItem('todo-state'))"]
       ->Js.Nullable.toOption
-      ->Belt.Option.map(state => {dispatch(INIT(state))})
+      ->Belt.Option.getWithDefault({todos: []}: AppState.t)
+    });
+
+  React.useEffect1(
+    _ => {
+      state
+      ->Js.Json.stringifyAny
+      ->Belt.Option.map(json => {
+          Dom.Storage2.localStorage->Dom.Storage2.setItem("todo-state", json)
+        })
       ->ignore;
       None;
     },
-    [|dispatch|],
+    [|state|],
   );
 
+  let todos = state.todos;
+  let hasTodos = todos->Belt.List.length > 0;
   let onSubmit =
     React.useCallback1(
       v =>
