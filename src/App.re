@@ -28,23 +28,30 @@ module Styles = {
     ]);
 };
 
+let defaultState: AppState.t = {init: false, todos: []};
+
 [@react.component]
 let make = () => {
-  let (state, dispatch) =
-    React.useReducerWithMapState(AppState.reducer, Js.undefined, _ => {
-      [%raw "JSON.parse(localStorage.getItem('todo-state'))"]
-      ->Js.Nullable.toOption
-      ->Belt.Option.getWithDefault({todos: []}: AppState.t)
-    });
-
+  let (state, dispatch) = React.useReducer(AppState.reducer, defaultState);
   React.useEffect1(
     _ => {
-      state
-      ->Js.Json.stringifyAny
-      ->Belt.Option.map(json => {
-          Dom.Storage2.localStorage->Dom.Storage2.setItem("todo-state", json)
-        })
-      ->ignore;
+      state.init
+        ? state
+          ->Js.Json.stringifyAny
+          ->Belt.Option.map(json => {
+              Dom.Storage2.localStorage->Dom.Storage2.setItem(
+                "todo-state",
+                json,
+              )
+            })
+          ->ignore
+        : dispatch(
+            INIT(
+              [%raw "JSON.parse(localStorage.getItem('todo-state'))"]
+              ->Js.Nullable.toOption
+              ->Belt.Option.getWithDefault(defaultState),
+            ),
+          );
       None;
     },
     [|state|],
