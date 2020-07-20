@@ -46,7 +46,7 @@ let make = () => {
             })
           ->ignore
         : dispatch(
-            INIT(
+            Init(
               [%raw "JSON.parse(localStorage.getItem('todo-state'))"]
               ->Js.Nullable.toOption
               ->Belt.Option.getWithDefault(defaultState),
