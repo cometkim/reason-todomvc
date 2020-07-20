@@ -26,9 +26,9 @@ let reducer = (state, action) =>
         ...state,
         todos:
           state.todos
-          ->Belt.List.map(todo => {
+          ->Belt.List.map(todo =>
               todo.id == id ? {...todo, complete: !todo.complete} : todo
-            }),
+            ),
       }
     | DestroyTodo(id) => {
         ...state,
@@ -38,7 +38,7 @@ let reducer = (state, action) =>
         ...state,
         todos:
           state.todos
-          ->Belt.List.map(todo => {todo.id == id ? {...todo, text} : todo}),
+          ->Belt.List.map(todo => todo.id == id ? {...todo, text} : todo),
       }
     | ToggleAll(complete) => {
         ...state,
