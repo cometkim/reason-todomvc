@@ -18,8 +18,7 @@ type action =
 let reducer = (state, action) =>
   switch (state, action) {
   | ({init: false, _}, Init(initialState)) => {...initialState, init: true}
-  | ({init: false, _}, _) => state
-  | (_, action) =>
+  | ({init: true, _}, action) =>
     switch (action) {
     | AddTodo(todo) => {...state, todos: state.todos @ [todo]}
     | ToggleTodo(id) => {
@@ -50,6 +49,7 @@ let reducer = (state, action) =>
       }
     | _ => state
     }
+  | _ => state
   };
 
 module Dispatch = {
