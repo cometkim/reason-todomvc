@@ -17,6 +17,8 @@
     "TodoMVC"
   ],
   "dependencies": {
+    "@ahrefs/bs-emotion": "^1.0.1",
+    "@davesnx/styled-ppx": "^0.20.0",
     "bs-css": "^11.0.0",
     "hexoid": "^1.0.0",
     "preact": "^10.3.4",

@@ -24,7 +24,8 @@
   "namespace": true,
   "bs-dependencies": [
     "bs-css",
-    "reason-react"
+    "reason-react",
+    "@ahrefs/bs-emotion"
   ],
   "bs-dev-dependencies": [
     "@glennsl/bs-jest",
@@ -32,6 +33,7 @@
     "bs-webapi"
   ],
   "ppx-flags": [
+    "@davesnx/styled-ppx/styled-ppx"
   ],
   "refmt": 3,
   "warnings": {

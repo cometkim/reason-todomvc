@@ -1,41 +1,27 @@
-module Styles = {
-  open Css;
+module Form = [%styled.form {|
+  width: 100%;
+|}];
 
-  let container = style([width(pct(100.0))]);
+module Input = [%styled.input {|
+  position: relative;
+  margin: 0;
+  padding: 16px 16px 16px 60px;
+  border-style: none;
+  width: 100%;
+  font-size: 24px;
+  line-height: 1.4em;
+  font-family: inherit;
+  font-weight: inherit;
+  box-sizing: border-box;
+  box-shadow: inset 0px -2px 1px 0px rgba(0, 0, 0, 0.03);
+  background: rgba(0, 0, 0, 0.003);
 
-  let input =
-    style([
-      position(`relative),
-      margin(`zero),
-      padding4(
-        ~top=`px(16),
-        ~right=`px(16),
-        ~bottom=`px(16),
-        ~left=`px(60),
-      ),
-      borderStyle(`none),
-      width(pct(100.0)),
-      fontSize(`px(24)),
-      fontFamily("inherit"),
-      fontWeight(`inherit_),
-      lineHeight(`em(1.4)),
-      boxSizing(`borderBox),
-      background(`rgba((0, 0, 0, 0.003))),
-      boxShadow(
-        Shadow.box(
-          ~y=`px(-2),
-          ~blur=`px(1),
-          ~inset=true,
-          `rgba((0, 0, 0, 0.03)),
-        ),
-      ),
-      placeholder([
-        color(hex("e6e6e6")),
-        fontStyle(`italic),
-        fontWeight(`num(300)),
-      ]),
-    ]);
-};
+  ::placeholder {
+    color: #e6e6e6;
+    font-style: italic;
+    font-weight: 300;
+  }
+|}];
 
 type submit = string => unit;
 
@@ -61,14 +47,13 @@ let make =
         [|onSubmit|],
       );
 
-    <form onSubmit=handleSubmit>
-      <input
+    <Form onSubmit=handleSubmit>
+      <Input
         ref={ReactDOMRe.Ref.domRef(inputRef)}
         id="todo-input"
         name="todo-input"
         placeholder="What needs to be done?"
-        className=Styles.input
         autoComplete="off"
       />
-    </form>;
+    </Form>;
   });
